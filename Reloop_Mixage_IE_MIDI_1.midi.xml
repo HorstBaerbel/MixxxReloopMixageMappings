@@ -3,8 +3,7 @@
     <info>
         <name>Reloop Mixage IE</name>
         <author>Bim Overbohm</author>
-		<version>0.8</version>
-        <description>Mapping for the Reloop Mixage Interface Edition controller should also work on the non-IE version. Requires reloop_mixage_ie_script.js in the same directory to function properly.</description>
+        <description>Mapping for the Reloop Mixage Interface Edition controller should also work on the non-IE version. Requires reloop_mixage_ie_script.js in the same directory to function properly. This is v0.8.5, needs Mixxx 2.1+. See https://github.com/HorstBaerbel/MixxxReloopMixageMappings for the most current version.</description>
     </info>
     <controller id="Reloop">
         <scriptfiles>
@@ -25,6 +24,15 @@
                 <key>play</key>
                 <status>0x90</status>
                 <midino>0x0C</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>cue_set</key>
+                <status>0x90</status>
+                <midino>0x17</midino>
                 <options>
                     <normal/>
                 </options>
@@ -52,6 +60,15 @@
                 <key>MixageIE.handleLibrary</key>
                 <status>0xB0</status>
                 <midino>0x1F</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MixageIE.scrollActive</key>
+                <status>0x90</status>
+                <midino>0x11</midino>
                 <options>
                     <script-binding/>
                 </options>
@@ -102,6 +119,15 @@
                 </options>
             </control>
             <control>
+                <group>[Channel2]</group>
+                <key>sync_enabled</key>
+                <status>0x90</status>
+                <midino>0x16</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
                 <group>[QuickEffectRack1_[Channel2]]</group>
                 <key>super1</key>
                 <status>0xB0</status>
@@ -147,12 +173,12 @@
                 </options>
             </control>
             <control>
-                <group>[Channel1]</group>
-                <key>cue_set</key>
-                <status>0x90</status>
-                <midino>0x09</midino>
+                <group>[EffectRack1_EffectUnit2]</group>
+                <key>MixageIE.handleEffectDryWet</key>
+                <status>0xB0</status>
+                <midino>0x23</midino>
                 <options>
-                    <normal/>
+                    <script-binding/>
                 </options>
             </control>
             <control>
@@ -169,15 +195,6 @@
                 <key>MixageIE.scratchActive</key>
                 <status>0x90</status>
                 <midino>0x04</midino>
-                <options>
-                    <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>MixageIE.scrollActive</key>
-                <status>0x90</status>
-                <midino>0x03</midino>
                 <options>
                     <script-binding/>
                 </options>
@@ -228,6 +245,15 @@
                 </options>
             </control>
             <control>
+                <group>[Channel1]</group>
+                <key>cue_set</key>
+                <status>0x90</status>
+                <midino>0x09</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
                 <group>[Library]</group>
                 <key>MixageIE.handleLibrary</key>
                 <status>0x90</status>
@@ -250,6 +276,15 @@
                 <key>MixageIE.handleLibrary</key>
                 <status>0x90</status>
                 <midino>0x1F</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MixageIE.scrollActive</key>
+                <status>0x90</status>
+                <midino>0x03</midino>
                 <options>
                     <script-binding/>
                 </options>
@@ -325,6 +360,24 @@
                 </options>
             </control>
             <control>
+                <group>[Channel1]</group>
+                <key>sync_enabled</key>
+                <status>0x90</status>
+                <midino>0x08</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit1]</group>
+                <key>MixageIE.handleEffectDryWet</key>
+                <status>0xB0</status>
+                <midino>0x21</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
                 <group>[EqualizerRack1_[Channel1]_Effect1]</group>
                 <key>parameter1</key>
                 <status>0xB0</status>
@@ -370,15 +423,6 @@
                 </options>
             </control>
             <control>
-                <group>[Channel2]</group>
-                <key>cue_set</key>
-                <status>0x90</status>
-                <midino>0x17</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
                 <group>[EqualizerRack1_[Channel2]_Effect1]</group>
                 <key>parameter2</key>
                 <status>0xB0</status>
@@ -392,15 +436,6 @@
                 <key>MixageIE.scratchActive</key>
                 <status>0x90</status>
                 <midino>0x12</midino>
-                <options>
-                    <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>MixageIE.scrollActive</key>
-                <status>0x90</status>
-                <midino>0x11</midino>
                 <options>
                     <script-binding/>
                 </options>
