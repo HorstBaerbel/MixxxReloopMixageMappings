@@ -1,11 +1,12 @@
 // Name: Reloop Mixage IE
 // Author: Bim Overbohm
-// Version: 0.8
+// Version: 0.8.5, needs Mixxx 2.1+
 
 var MixageIE = {};
 
 MixageIE.updateVUMetersTimer = 0;
 MixageIE.libraryHideTimer = 0;
+MixageIE.libraryReducedHideTimeout = 500;
 MixageIE.libraryHideTimeout = 4000;
 MixageIE.libraryRemainingTime = 0;
 MixageIE.scratchPressed = false;
@@ -77,14 +78,21 @@ MixageIE.toggleLED = function (value, group, control) {
 }
 
 MixageIE.updateVUMeters = function() {
-	midi.sendShortMsg(0x90, 29, engine.getValue('[Channel1]', 'VuMeter') * 7.2);
-	midi.sendShortMsg(0x90, 30, engine.getValue('[Channel2]', 'VuMeter') * 7.2);
+	midi.sendShortMsg(0x90, 29, engine.getValue('[Channel1]', 'VuMeter') * 7);
+	midi.sendShortMsg(0x90, 30, engine.getValue('[Channel2]', 'VuMeter') * 7);
 }
 
 // Toggle the LED on play button and make sure the preview deck stops when starting to play in a deck
 MixageIE.handlePlay = function (value, group, control) {
 	MixageIE.toggleLED(value, group, control);
 	engine.setValue('[PreviewDeck1]', 'stop', true);
+}
+
+// Helper function to scroll the playlist
+MixageIE.scrollLibrary = function (value) {
+	MixageIE.setLibraryMaximized(true);
+	engine.setValue('[Library]', 'MoveVertical', value);
+	//engine.setValue('[PlayList]', 'MoveDown', value);
 }
 
 // A button for the playlist was pressed
@@ -104,9 +112,8 @@ MixageIE.handleLibrary = function (channel, control, value, status, group) {
 		}
 		// "push2browse" button was turned 
 		else if (status === 0xB0) {
-			MixageIE.setLibraryMaximized(true);
 			var newValue = value - 64;
-			engine.setValue('[Playlist]', 'SelectTrackKnob', newValue);
+			MixageIE.scrollLibrary(newValue);
 		}
 	}
 	// load into deck 1
@@ -114,6 +121,7 @@ MixageIE.handleLibrary = function (channel, control, value, status, group) {
 		if (value === 0x7F) {
 			engine.setValue('[PreviewDeck1]', 'stop', true);
 			engine.setValue('[Channel1]', 'LoadSelectedTrack', true);
+			MixageIE.libraryRemainingTime = MixageIE.libraryReducedHideTimeout;
 		}
 	}
 	// load into deck 2
@@ -121,6 +129,7 @@ MixageIE.handleLibrary = function (channel, control, value, status, group) {
 		if (value === 0x7F) {
 			engine.setValue('[PreviewDeck1]', 'stop', true);
 			engine.setValue('[Channel2]', 'LoadSelectedTrack', true);
+			MixageIE.libraryRemainingTime = MixageIE.libraryReducedHideTimeout;
 		}
 	}
 }
@@ -128,12 +137,14 @@ MixageIE.handleLibrary = function (channel, control, value, status, group) {
 // Set the library visible and hide it when libraryHideTimeOut is reached
 MixageIE.setLibraryMaximized = function (visible) {
 	if (visible === true) {
-		// maximize library
-		engine.setValue('[Master]', 'maximize_library', true);
 		MixageIE.libraryRemainingTime = MixageIE.libraryHideTimeout;
-		if (MixageIE.libraryHideTimer === 0) {
-			// timer not running. start it
-			MixageIE.libraryHideTimer = engine.beginTimer(MixageIE.libraryHideTimeout / 10, MixageIE.libraryCheckTimeout);
+		// maximize library if not maximized already
+		if (engine.getValue('[Master]', 'maximize_library') !== true) {
+			engine.setValue('[Master]', 'maximize_library', true);
+			if (MixageIE.libraryHideTimer === 0) {
+				// timer not running. start it
+				MixageIE.libraryHideTimer = engine.beginTimer(MixageIE.libraryHideTimeout / 5, MixageIE.libraryCheckTimeout);
+			}
 		}
 	}
 	else {
@@ -147,7 +158,7 @@ MixageIE.setLibraryMaximized = function (visible) {
 }
 
 MixageIE.libraryCheckTimeout = function () {
-	MixageIE.libraryRemainingTime -= MixageIE.libraryHideTimeout / 10;
+	MixageIE.libraryRemainingTime -= MixageIE.libraryHideTimeout / 5;
 	if (MixageIE.libraryRemainingTime <= 0) {
 		engine.stopTimer(MixageIE.libraryHideTimer);
 		MixageIE.libraryHideTimer = 0;
@@ -162,16 +173,16 @@ MixageIE.scratchActive = function (channel, control, value, status, group) {
 	var deckNr = control === 0x04 ? 1 : 2;
 	if (value === 0x7F) {
 		MixageIE.scratchPressed = true;
-		var alpha = 1.0/8;
-		var beta = alpha/32;
-		engine.scratchEnable(deckNr, 620, 20/*33+1/3*/, alpha, beta);
+		var alpha = 1.0/8.0;
+		var beta = alpha/32.0;
+		engine.scratchEnable(deckNr, 620, 20.0/*33.0+1.0/3.0*/, alpha, beta);
     } else {
 		MixageIE.scratchPressed = false;
         engine.scratchDisable(deckNr);
     }
 }
 
-// The "magnifyingglass" button that enables/disables playlist scrolling
+// The "magnifying glass" button that enables/disables playlist scrolling
 MixageIE.scrollActive = function (channel, control, value, status, group) {
 	// calculate deck number from MIDI control. 0x04 controls deck 1, 0x12 deck 2
 	var deckNr = control === 0x03 ? 1 : 2;
@@ -189,8 +200,8 @@ MixageIE.wheelTouch = function (channel, control, value, status, group) {
 		var deckNr = control - 0x24 + 1;
 		if (value === 0x7F) {
 		    var alpha = 1.0/8;
-		    var beta = alpha/32;
-		    engine.scratchEnable(deckNr, 620, 33+1/3, alpha, beta);
+		    var beta = alpha/32.0;
+		    engine.scratchEnable(deckNr, 620, 33.0+1.0/3.0, alpha, beta);
 		} else {
 		    engine.scratchDisable(deckNr);
 		}
@@ -211,9 +222,18 @@ MixageIE.wheelTurn = function (channel, control, value, status, group) {
 		engine.scratchDisable(deckNr);
 	}
 	if (MixageIE.scrollPressed) {
-		MixageIE.setLibraryMaximized(true);
-		engine.setValue('[Playlist]', 'SelectTrackKnob', newValue); // scroll through library
+		MixageIE.scrollLibrary(newValue);
 	}
     //engine.setValue('[Channel'+deckNr+']', 'jog', newValue); // Pitch bend
 }
 
+MixageIE.handleEffectDryWet = function (channel, control, value, status, group) {
+	// calculate effect unit number from MIDI control. 0x21 controls unit 1, 0x25 unit 2
+	var unitNr = control === 0x21 ? 1 : 2;
+    // Control centers on 0x40 (64), calculate difference to that value and multiply by 4
+    var diff = (value - 64) / 10.0;
+    // In either case, register the movement
+	var controlString = '[EffectRack1_EffectUnit'+unitNr+']';
+    var value = engine.getValue(controlString, 'mix');
+	engine.setValue(controlString, 'mix', value + diff);
+}
