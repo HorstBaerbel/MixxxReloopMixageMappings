@@ -1,6 +1,6 @@
 // Name: Reloop Mixage IE
 // Author: Bim Overbohm
-// Version: 0.8.5, needs Mixxx 2.1+
+// Version: 0.9.0, needs Mixxx 2.1+
 
 var MixageIE = {};
 
@@ -12,6 +12,7 @@ MixageIE.libraryRemainingTime = 0;
 MixageIE.scratchPressed = false;
 MixageIE.scrollPressed = false;
 MixageIE.scratchByWheelTouch = false;
+MixageIE.beatMovePressed = false;
 
 MixageIE.init = function (id, debugging) {
 	MixageIE.connectControlsToFunctions('[Channel1]');
@@ -21,7 +22,7 @@ MixageIE.init = function (id, debugging) {
     	midi.sendShortMsg(0x90, i, 0);
 	}
 	// start timers for updating the VU meters
-	MixageIE.updateVUMetersTimer = engine.beginTimer(50, MixageIE.updateVUMeters);
+	MixageIE.updateVUMetersTimer = engine.beginTimer(33, MixageIE.updateVUMeters);
 	engine.scratchDisable(1);
 	engine.scratchDisable(2);
 }
@@ -91,8 +92,8 @@ MixageIE.handlePlay = function (value, group, control) {
 // Helper function to scroll the playlist
 MixageIE.scrollLibrary = function (value) {
 	MixageIE.setLibraryMaximized(true);
-	engine.setValue('[Library]', 'MoveVertical', value);
-	//engine.setValue('[PlayList]', 'MoveDown', value);
+	//engine.setValue('[Library]', 'MoveVertical', value);
+	engine.setValue('[Playlist]', 'SelectTrackKnob', value); // for Mixxx < 2.1
 }
 
 // A button for the playlist was pressed
@@ -236,4 +237,37 @@ MixageIE.handleEffectDryWet = function (channel, control, value, status, group) 
 	var controlString = '[EffectRack1_EffectUnit'+unitNr+']';
     var value = engine.getValue(controlString, 'mix');
 	engine.setValue(controlString, 'mix', value + diff);
+}
+
+MixageIE.handleBeatMovePressed = function (channel, control, value, status, group) {
+		MixageIE.beatMovePressed = value === 0x7f;
+}
+
+MixageIE.handleBeatMoveLength = function (channel, control, value, status, group) {
+	// calculate effect unit number from MIDI control. 0x20 controls unit 1, 0x22 unit 2
+	var unitNr = control === 0x20 ? 1 : 2;
+	// Control centers on 0x40 (64), calculate difference to that
+	var diff = (value - 64);
+	// In either case, register the movement
+	if (MixageIE.beatMovePressed) {
+		var value = engine.getParameter('[Channel'+unitNr+']', 'beatjump_size');
+		value = diff > 0 ? 2 * value : value / 2;
+		engine.setParameter('[Channel'+unitNr+']', 'beatjump_size', value);
+		print("A");
+	}
+	else {
+		var direction = diff > 0 ? 'loop_double' : 'loop_halve';
+		engine.setValue('[Channel'+unitNr+']', direction, true);
+print("B");
+	}
+}
+
+MixageIE.handleBeatMove = function (channel, control, value, status, group) {
+	// calculate effect unit number from MIDI control. 0x5f controls unit 1, 0x61 unit 2
+	var unitNr = control === 0x5f ? 1 : 2;
+    // Control centers on 0x40 (64), calculate difference to that
+    var diff = (value - 64);
+    // In either case, register the movement
+	var direction = diff > 0 ? 'beatjump_forward' : 'beatjump_backward';
+	engine.setValue('[Channel'+unitNr+']', direction, true);
 }
