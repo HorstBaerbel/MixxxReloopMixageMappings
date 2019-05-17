@@ -253,12 +253,10 @@ MixageIE.handleBeatMoveLength = function (channel, control, value, status, group
 		var value = engine.getParameter('[Channel'+unitNr+']', 'beatjump_size');
 		value = diff > 0 ? 2 * value : value / 2;
 		engine.setParameter('[Channel'+unitNr+']', 'beatjump_size', value);
-		print("A");
 	}
 	else {
 		var direction = diff > 0 ? 'loop_double' : 'loop_halve';
 		engine.setValue('[Channel'+unitNr+']', direction, true);
-print("B");
 	}
 }
 
