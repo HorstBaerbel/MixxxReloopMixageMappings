@@ -119,6 +119,15 @@
                 </options>
             </control>
             <control>
+                <group>[Channel1]</group>
+                <key>sync_enabled</key>
+                <status>0x90</status>
+                <midino>0x47</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
                 <group>[Channel2]</group>
                 <key>pfl</key>
                 <status>0x90</status>
@@ -362,12 +371,12 @@
                 </options>
             </control>
             <control>
-                <group>[Channel1]</group>
-                <key>sync_enabled</key>
+                <group>[Channel2]</group>
+                <key>MixageIE.scrollActive</key>
                 <status>0x90</status>
-                <midino>0x47</midino>
+                <midino>0x11</midino>
                 <options>
-                    <normal/>
+                    <script-binding/>
                 </options>
             </control>
             <control>
