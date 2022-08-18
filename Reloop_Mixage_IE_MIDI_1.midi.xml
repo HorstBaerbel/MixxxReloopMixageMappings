@@ -3,7 +3,7 @@
     <info>
         <name>Reloop Mixage IE</name>
         <author>Bim Overbohm</author>
-        <description>Mapping for the Reloop Mixage Interface Edition controller. Should also work on the non-interface version. Requires reloop_mixage_ie_script.js in the same directory to function properly. This is v0.9.0 and it needs Mixxx 2.1+. See https://github.com/HorstBaerbel/MixxxReloopMixageMappings for the most current version.</description>
+        <description>Mapping for the Reloop Mixage Interface Edition controller. Should also work on the non-interface version. Requires reloop_mixage_ie_script.js in the same directory to function properly. This is v0.9.5 and it needs Mixxx 2.1+. See https://github.com/HorstBaerbel/MixxxReloopMixageMappings for the most current version.</description>
     </info>
     <controller id="Reloop">
         <scriptfiles>
@@ -21,15 +21,6 @@
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>cue_set</key>
-                <status>0x90</status>
-                <midino>0x17</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
                 <key>MixageIE.wheelTurn</key>
                 <status>0xB0</status>
                 <midino>0x25</midino>
@@ -38,10 +29,55 @@
                 </options>
             </control>
             <control>
+                <group>[Channel2]</group>
+                <key>cue_gotoandstop</key>
+                <status>0x90</status>
+                <midino>0x17</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>cue_default</key>
+                <status>0x90</status>
+                <midino>0x19</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>cue_gotoandplay</key>
+                <status>0x90</status>
+                <midino>0x18</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
                 <group>[Channel1]</group>
                 <key>cue_gotoandplay</key>
                 <status>0x90</status>
                 <midino>0x0A</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>cue_gotoandstop</key>
+                <status>0x90</status>
+                <midino>0x09</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>cue_default</key>
+                <status>0x90</status>
+                <midino>0x0B</midino>
                 <options>
                     <normal/>
                 </options>
@@ -56,28 +92,10 @@
                 </options>
             </control>
             <control>
-                <group>[QuickEffectRack1_[Channel1]]</group>
-                <key>super1</key>
-                <status>0xB0</status>
-                <midino>0x34</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
                 <group>[Channel2]</group>
                 <key>rate_temp_up</key>
                 <status>0x90</status>
                 <midino>0x10</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[QuickEffectRack1_[Channel2]]</group>
-                <key>super1</key>
-                <status>0xB0</status>
-                <midino>0x3A</midino>
                 <options>
                     <normal/>
                 </options>
@@ -137,15 +155,6 @@
                 </options>
             </control>
             <control>
-                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
-                <key>parameter1</key>
-                <status>0xB0</status>
-                <midino>0x37</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
                 <group>[Channel2]</group>
                 <key>beatloop_activate</key>
                 <status>0x90</status>
@@ -174,11 +183,119 @@
             </control>
             <control>
                 <group>[EffectRack1_EffectUnit1]</group>
+                <key>MixageIE.handleEffectMasterOn</key>
+                <status>0x90</status>
+                <midino>0x46</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit2]</group>
+                <key>MixageIE.handleEffectMasterOn</key>
+                <status>0x90</status>
+                <midino>0x54</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit1]</group>
+                <key>MixageIE.handleEffectChannelOn</key>
+                <status>0x90</status>
+                <midino>0x08</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit2]</group>
+                <key>MixageIE.handleEffectChannelOn</key>
+                <status>0x90</status>
+                <midino>0x16</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit1]</group>
+                <key>MixageIE.handleEffectChannelSelect</key>
+                <status>0x90</status>
+                <midino>0x07</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit2]</group>
+                <key>MixageIE.handleEffectChannelSelect</key>
+                <status>0x90</status>
+                <midino>0x15</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit1]</group>
                 <key>MixageIE.handleEffectDryWet</key>
                 <status>0xB0</status>
                 <midino>0x21</midino>
                 <options>
                     <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit2]</group>
+                <key>MixageIE.handleEffectDryWet</key>
+                <status>0xB0</status>
+                <midino>0x23</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit1]</group>
+                <key>MixageIE.handleEffectSuper</key>
+                <status>0xB0</status>
+                <midino>0x60</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit2]</group>
+                <key>MixageIE.handleEffectSuper</key>
+                <status>0xB0</status>
+                <midino>0x62</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
+                <key>parameter1</key>
+                <status>0xB0</status>
+                <midino>0x37</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
+                <key>parameter2</key>
+                <status>0xB0</status>
+                <midino>0x36</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
+                <key>parameter3</key>
+                <status>0xB0</status>
+                <midino>0x35</midino>
+                <options>
+                    <normal/>
                 </options>
             </control>
             <control>
@@ -191,30 +308,48 @@
                 </options>
             </control>
             <control>
+                <group>[EqualizerRack1_[Channel2]_Effect1]</group>
+                <key>parameter2</key>
+                <status>0xB0</status>
+                <midino>0x3C</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[EqualizerRack1_[Channel2]_Effect1]</group>
+                <key>parameter3</key>
+                <status>0xB0</status>
+                <midino>0x3B</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[QuickEffectRack1_[Channel1]]</group>
+                <key>super1</key>
+                <status>0xB0</status>
+                <midino>0x34</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[QuickEffectRack1_[Channel2]]</group>
+                <key>super1</key>
+                <status>0xB0</status>
+                <midino>0x3A</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
                 <group>[Channel2]</group>
                 <key>MixageIE.handleBeatMovePressed</key>
                 <status>0x90</status>
                 <midino>0x22</midino>
                 <options>
                     <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>cue_default</key>
-                <status>0x90</status>
-                <midino>0x19</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>cue_default</key>
-                <status>0x90</status>
-                <midino>0x19</midino>
-                <options>
-                    <normal/>
                 </options>
             </control>
             <control>
@@ -254,15 +389,6 @@
                 </options>
             </control>
             <control>
-                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
-                <key>parameter2</key>
-                <status>0xB0</status>
-                <midino>0x36</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
                 <group>[Channel2]</group>
                 <key>MixageIE.scratchActive</key>
                 <status>0x90</status>
@@ -291,29 +417,11 @@
             </control>
             <control>
                 <group>[Channel1]</group>
-                <key>cue_set</key>
-                <status>0x90</status>
-                <midino>0x09</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
                 <key>MixageIE.handleBeatMoveLength</key>
                 <status>0xB0</status>
                 <midino>0x20</midino>
                 <options>
                     <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[EqualizerRack1_[Channel2]_Effect1]</group>
-                <key>parameter2</key>
-                <status>0xB0</status>
-                <midino>0x3C</midino>
-                <options>
-                    <normal/>
                 </options>
             </control>
             <control>
@@ -323,15 +431,6 @@
                 <midino>0x25</midino>
                 <options>
                     <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>cue_gotoandplay</key>
-                <status>0x90</status>
-                <midino>0x18</midino>
-                <options>
-                    <normal/>
                 </options>
             </control>
             <control>
@@ -375,15 +474,6 @@
                 <key>MixageIE.scrollActive</key>
                 <status>0x90</status>
                 <midino>0x11</midino>
-                <options>
-                    <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[EffectRack1_EffectUnit2]</group>
-                <key>MixageIE.handleEffectDryWet</key>
-                <status>0xB0</status>
-                <midino>0x23</midino>
                 <options>
                     <script-binding/>
                 </options>
@@ -487,24 +577,6 @@
                 </options>
             </control>
             <control>
-                <group>[Channel1]</group>
-                <key>cue_default</key>
-                <status>0x90</status>
-                <midino>0x0B</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>cue_default</key>
-                <status>0x90</status>
-                <midino>0x0B</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
                 <group>[Channel2]</group>
                 <key>volume</key>
                 <status>0xB0</status>
@@ -526,33 +598,6 @@
                 <key>play</key>
                 <status>0x90</status>
                 <midino>0x1A</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
-                <key>parameter3</key>
-                <status>0xB0</status>
-                <midino>0x35</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[EffectRack1_EffectUnit1]</group>
-                <key>group_[Channel1]_enable</key>
-                <status>0x90</status>
-                <midino>0x08</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[EffectRack1_EffectUnit2]</group>
-                <key>group_[Channel2]_enable</key>
-                <status>0x90</status>
-                <midino>0x16</midino>
                 <options>
                     <normal/>
                 </options>
@@ -600,15 +645,6 @@
                 <midino>0x20</midino>
                 <options>
                     <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[EqualizerRack1_[Channel2]_Effect1]</group>
-                <key>parameter3</key>
-                <status>0xB0</status>
-                <midino>0x3B</midino>
-                <options>
-                    <normal/>
                 </options>
             </control>
         </controls>
