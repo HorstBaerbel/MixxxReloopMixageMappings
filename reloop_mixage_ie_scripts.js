@@ -1,6 +1,6 @@
 // Name: Reloop Mixage IE
 // Author: Bim Overbohm
-// Version: 0.9.5, needs Mixxx 2.1+
+// Version: 1.0.0, needs Mixxx 2.1+
 
 var MixageIE = {};
 
@@ -53,6 +53,7 @@ MixageIE.ledMap = {
 		'play_indicator': 0x0C,
 		'pfl': 0x0E,
 		'loop_enabled': 0x06,
+		'sync_enabled': 0x09,
 		'master_on': 0x07,
 		'fx_on': 0x08
 	},
@@ -62,6 +63,7 @@ MixageIE.ledMap = {
 		'play_indicator': 0x1A,
 		'pfl': 0x1C,
 		'loop_enabled': 0x14,
+		'sync_enabled': 0x17,
 		'master_on': 0x15,
 		'fx_on': 0x16
 	}
@@ -73,7 +75,8 @@ MixageIE.connectionMap = {
 	'cue_default': 'MixageIE.toggleLED',
 	'play_indicator': 'MixageIE.handlePlay',
 	'pfl': 'MixageIE.toggleLED',
-	'loop_enabled': 'MixageIE.toggleLED'
+	'loop_enabled': 'MixageIE.toggleLED',
+	'sync_enabled': 'MixageIE.toggleLED'
 };
 
 // Set or remove functions to call when the state of a mixxx control changes
@@ -132,18 +135,18 @@ MixageIE.handleLibrary = function (channel, control, value, status, group) {
 		}
 	}
 	// load into deck 1
-	else if (control === 0x0D) {
+	else if (control === 0x0D || control === 0x4C) {
 		if (value === 0x7F) {
 			engine.setValue('[PreviewDeck1]', 'stop', true);
-			engine.setValue('[Channel1]', 'LoadSelectedTrack', true);
+			engine.setValue('[Channel1]', control === 0x4C ? 'LoadSelectedTrackAndPlay' : 'LoadSelectedTrack', true);
 			MixageIE.libraryRemainingTime = MixageIE.libraryReducedHideTimeout;
 		}
 	}
 	// load into deck 2
-	else if (control === 0x1B) {
+	else if (control === 0x1B || control === 0x5A) {
 		if (value === 0x7F) {
 			engine.setValue('[PreviewDeck1]', 'stop', true);
-			engine.setValue('[Channel2]', 'LoadSelectedTrack', true);
+			engine.setValue('[Channel2]', control === 0x5A ? 'LoadSelectedTrackAndPlay' : 'LoadSelectedTrack', true);
 			MixageIE.libraryRemainingTime = MixageIE.libraryReducedHideTimeout;
 		}
 	}

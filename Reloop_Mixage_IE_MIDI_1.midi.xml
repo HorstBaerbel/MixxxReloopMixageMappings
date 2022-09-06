@@ -1,24 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<MixxxControllerPreset schemaVersion="1" mixxxVersion="">
+<MixxxControllerPreset schemaVersion="1" mixxxVersion="2.1">
     <info>
         <name>Reloop Mixage IE</name>
         <author>Bim Overbohm</author>
-        <description>Mapping for the Reloop Mixage Interface Edition controller. Should also work on the non-interface version. Requires reloop_mixage_ie_script.js in the same directory to function properly. This is v0.9.5 and it needs Mixxx 2.1+. See https://github.com/HorstBaerbel/MixxxReloopMixageMappings for the most current version.</description>
+        <description>Mapping for the Reloop Mixage Interface Edition controller (https://www.reloop.com/reloop-mixage-ie). Should also work on the non-interface version. Requires reloop_mixage_ie_script.js in the same directory to function properly. This is v1.0.0 and it needs Mixxx 2.1+. See https://github.com/HorstBaerbel/MixxxReloopMixageMappings for the most up-to-date version.</description>
     </info>
-    <controller id="Reloop">
+    <controller id="Reloop Mixage IE">
         <scriptfiles>
             <file functionprefix="MixageIE" filename="reloop_mixage_ie_scripts.js"/>
         </scriptfiles>
         <controls>
-            <control>
-                <group>[Channel2]</group>
-                <key>loop_in</key>
-                <status>0x90</status>
-                <midino>0x52</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
             <control>
                 <group>[Channel2]</group>
                 <key>MixageIE.wheelTurn</key>
@@ -29,8 +20,35 @@
                 </options>
             </control>
             <control>
+                <group>[Channel1]</group>
+                <key>cue_play</key>
+                <status>0x90</status>
+                <midino>0x0A</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>sync_enabled</key>
+                <status>0x90</status>
+                <midino>0x09</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>cue_default</key>
+                <status>0x90</status>
+                <midino>0x0B</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
                 <group>[Channel2]</group>
-                <key>cue_gotoandstop</key>
+                <key>sync_enabled</key>
                 <status>0x90</status>
                 <midino>0x17</midino>
                 <options>
@@ -48,36 +66,9 @@
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>cue_gotoandplay</key>
+                <key>cue_play</key>
                 <status>0x90</status>
                 <midino>0x18</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>cue_gotoandplay</key>
-                <status>0x90</status>
-                <midino>0x0A</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>cue_gotoandstop</key>
-                <status>0x90</status>
-                <midino>0x09</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>cue_default</key>
-                <status>0x90</status>
-                <midino>0x0B</midino>
                 <options>
                     <normal/>
                 </options>
@@ -111,20 +102,11 @@
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>sync_enabled</key>
+                <key>keylock</key>
                 <status>0x90</status>
                 <midino>0x55</midino>
                 <options>
                     <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Library]</group>
-                <key>MixageIE.handleLibrary</key>
-                <status>0x90</status>
-                <midino>0x0D</midino>
-                <options>
-                    <script-binding/>
                 </options>
             </control>
             <control>
@@ -138,7 +120,7 @@
             </control>
             <control>
                 <group>[Channel1]</group>
-                <key>sync_enabled</key>
+                <key>keylock</key>
                 <status>0x90</status>
                 <midino>0x47</midino>
                 <options>
@@ -150,33 +132,6 @@
                 <key>pfl</key>
                 <status>0x90</status>
                 <midino>0x1C</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>beatloop_activate</key>
-                <status>0x90</status>
-                <midino>0x13</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>loop_out</key>
-                <status>0x90</status>
-                <midino>0x45</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>reloop_toggle</key>
-                <status>0x90</status>
-                <midino>0x06</midino>
                 <options>
                     <normal/>
                 </options>
@@ -344,15 +299,6 @@
                 </options>
             </control>
             <control>
-                <group>[Channel2]</group>
-                <key>MixageIE.handleBeatMovePressed</key>
-                <status>0x90</status>
-                <midino>0x22</midino>
-                <options>
-                    <script-binding/>
-                </options>
-            </control>
-            <control>
                 <group>[Channel1]</group>
                 <key>play</key>
                 <status>0x90</status>
@@ -366,24 +312,6 @@
                 <key>MixageIE.scrollActive</key>
                 <status>0x90</status>
                 <midino>0x03</midino>
-                <options>
-                    <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[Library]</group>
-                <key>MixageIE.handleLibrary</key>
-                <status>0x90</status>
-                <midino>0x5A</midino>
-                <options>
-                    <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[Library]</group>
-                <key>MixageIE.handleLibrary</key>
-                <status>0x90</status>
-                <midino>0x1F</midino>
                 <options>
                     <script-binding/>
                 </options>
@@ -408,6 +336,33 @@
             </control>
             <control>
                 <group>[Channel1]</group>
+                <key>loop_out</key>
+                <status>0x90</status>
+                <midino>0x45</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>beatloop_activate</key>
+                <status>0x90</status>
+                <midino>0x05</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>reloop_toggle</key>
+                <status>0x90</status>
+                <midino>0x06</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
                 <key>MixageIE.handleBeatMove</key>
                 <status>0xB0</status>
                 <midino>0x5F</midino>
@@ -420,6 +375,78 @@
                 <key>MixageIE.handleBeatMoveLength</key>
                 <status>0xB0</status>
                 <midino>0x20</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MixageIE.handleBeatMovePressed</key>
+                <status>0x90</status>
+                <midino>0x20</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>loop_in</key>
+                <status>0x90</status>
+                <midino>0x52</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>loop_out</key>
+                <status>0x90</status>
+                <midino>0x53</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>beatloop_activate</key>
+                <status>0x90</status>
+                <midino>0x13</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>reloop_toggle</key>
+                <status>0x90</status>
+                <midino>0x14</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MixageIE.handleBeatMoveLength</key>
+                <status>0xB0</status>
+                <midino>0x22</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MixageIE.handleBeatMove</key>
+                <status>0xB0</status>
+                <midino>0x61</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MixageIE.handleBeatMovePressed</key>
+                <status>0x90</status>
+                <midino>0x22</midino>
                 <options>
                     <script-binding/>
                 </options>
@@ -491,7 +518,52 @@
                 <group>[Library]</group>
                 <key>MixageIE.handleLibrary</key>
                 <status>0x90</status>
+                <midino>0x0D</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>MixageIE.handleLibrary</key>
+                <status>0x90</status>
                 <midino>0x1B</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>MixageIE.handleLibrary</key>
+                <status>0x90</status>
+                <midino>0x4C</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>MixageIE.handleLibrary</key>
+                <status>0x90</status>
+                <midino>0x5A</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>MixageIE.handleLibrary</key>
+                <status>0x90</status>
+                <midino>0x1F</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>MixageIE.handleLibrary</key>
+                <status>0xB0</status>
+                <midino>0x1F</midino>
                 <options>
                     <script-binding/>
                 </options>
@@ -516,56 +588,11 @@
             </control>
             <control>
                 <group>[Channel1]</group>
-                <key>beatloop_activate</key>
-                <status>0x90</status>
-                <midino>0x05</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
                 <key>volume</key>
                 <status>0xB0</status>
                 <midino>0x38</midino>
                 <options>
                     <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>loop_out</key>
-                <status>0x90</status>
-                <midino>0x53</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>reloop_toggle</key>
-                <status>0x90</status>
-                <midino>0x14</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>MixageIE.handleBeatMoveLength</key>
-                <status>0xB0</status>
-                <midino>0x22</midino>
-                <options>
-                    <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>MixageIE.handleBeatMove</key>
-                <status>0xB0</status>
-                <midino>0x61</midino>
-                <options>
-                    <script-binding/>
                 </options>
             </control>
             <control>
@@ -612,12 +639,21 @@
                 </options>
             </control>
             <control>
-                <group>[Library]</group>
-                <key>MixageIE.handleLibrary</key>
+                <group>[PreviewDeck1]</group>
+                <key>play</key>
                 <status>0x90</status>
-                <midino>0x4C</midino>
+                <midino>0x4D</midino>
                 <options>
-                    <script-binding/>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[PreviewDeck1]</group>
+                <key>stop</key>
+                <status>0x90</status>
+                <midino>0x5B</midino>
+                <options>
+                    <normal/>
                 </options>
             </control>
             <control>
@@ -630,21 +666,39 @@
                 </options>
             </control>
             <control>
-                <group>[Library]</group>
-                <key>MixageIE.handleLibrary</key>
-                <status>0xB0</status>
-                <midino>0x1F</midino>
+                <group>[Channel1]</group>
+                <key>hotcue_1_activate</key>
+                <status>0x90</status>
+                <midino>0x48</midino>
                 <options>
-                    <script-binding/>
+                    <normal/>
                 </options>
             </control>
             <control>
                 <group>[Channel1]</group>
-                <key>MixageIE.handleBeatMovePressed</key>
+                <key>hotcue_2_activate</key>
                 <status>0x90</status>
-                <midino>0x20</midino>
+                <midino>0x49</midino>
                 <options>
-                    <script-binding/>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>hotcue_3_activate</key>
+                <status>0x90</status>
+                <midino>0x4A</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>hotcue_4_activate</key>
+                <status>0x90</status>
+                <midino>0x4B</midino>
+                <options>
+                    <normal/>
                 </options>
             </control>
         </controls>
