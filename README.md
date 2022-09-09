@@ -9,7 +9,7 @@ Read [here](https://www.mixxx.org/forums/viewtopic.php?f=7&t=7263) how to use th
 
 This controller is a MIDI and audio class compliant device so it is compatible as-is with Linux, MacOS and Windows. On windows, the manufacturer ships an ASIO low-latency driver that can be found on the manufacturer’s product page
 
-The **MIC 🎤** input can be set to different modes. To make it usable in Mixxx, set it to "SW". The **MASTER** and **PHONES** controls work directly on the audio hardware an can't be mapped in Mixxx.
+The **MIC 🎤** input can be set to different modes. To make it usable in Mixxx, set it to "SW". The **MASTER** and **PHONES** controls work directly on the audio hardware and can't be mapped in Mixxx.
 
 ## Controls
 
@@ -36,7 +36,7 @@ Most functions on this controller are self-explanatory and mapped in that way. T
 | **CUE / CUE 3**                     | If at cue point, plays until released. If not at cue point: If playing, goes to cue point and stops. If not playing, sets a cue point | If hot cue 3 is set, go to hot cue 3, else set hot cue 3 |
 | **⏯ / CUE 4**                       | Play / pause                                                                                                                          | If hot cue 4 is set, go to hot cue 4, else set hot cue 4 |
 
-The effect buttons and knobs on the left side apply to FX1, the ones on the right to FX2.
+The effect buttons and knobs on the left side apply to Effect Rack 1, the ones on the right to Effect Rack 2.
 
 ### General
 
