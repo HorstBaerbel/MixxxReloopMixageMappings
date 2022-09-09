@@ -1,9 +1,15 @@
-# Mixxx 2.1+ Reloop Mixage IE controller mappings
+# Reloop Mixage IE controller mappings
 
-Controller mappings for the Reloop Mixage IE DJ controller to be used in Mixxx. They should work for the non-IE version too. All controls are mapped including shift versions, LEDs and VU-meters are properly updated. Effect controls (dry / wet + super) are available for effect rack 1 & 2.
-Read [here](https://www.mixxx.org/forums/viewtopic.php?f=7&t=7263) how to use the mapping files in Mixxx. Make sure you copy both the XML and JS file to your controller directory.
+Controller mappings for the Reloop Mixage Interface Edition DJ controller to be used in Mixxx. They should work for the non-IE version too. All controls are mapped including shift versions, LEDs and VU-meters are properly updated. Effect controls (dry / wet + super) are available for effect rack 1 & 2.
+Read [here](https://www.mixxx.org/forums/viewtopic.php?f=7&t=7263) how to use the mapping files in Mixxx. Make sure you copy both the XML and JS file to your controller directory. Mixxx 2.1+ is needed.
 
-![Reloop Mixage IE DJ controller](reloop_mixage_ie.jpg)
+![Reloop Mixage IE DJ controller](Reloop-Mixage.jpg)
+
+## Audio
+
+This controller is a MIDI and audio class compliant device so it is compatible as-is with Linux, MacOS and Windows. On windows, the manufacturer ships an ASIO low-latency driver that can be found on the manufacturer’s product page
+
+The **MIC 🎤** input can be set to different modes. To make it usable in Mixxx, set it to "SW". The **MASTER** and **PHONES** controls work directly on the audio hardware an can't be mapped in Mixxx.
 
 ## Controls
 
