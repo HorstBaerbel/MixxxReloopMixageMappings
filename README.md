@@ -1,4 +1,7 @@
-# Reloop Mixage IE controller mappings
+# !!! OUTDATED !!!
+See [my mixxx fork](https://github.com/HorstBaerbel/mixxx/tree/reloop_mixage) and my [mixxx manuals fork](https://github.com/HorstBaerbel/manual/tree/2.3) for the most current version of the mappings.
+
+## Reloop Mixage IE controller mappings
 
 Controller mappings for the Reloop Mixage Interface Edition DJ controller to be used in Mixxx. They should work for the non-IE version too. All controls are mapped including shift versions, LEDs and VU-meters are properly updated. Effect controls (dry / wet + super) are available for effect rack 1 & 2.
 Read [here](https://www.mixxx.org/forums/viewtopic.php?f=7&t=7263) how to use the mapping files in Mixxx. Make sure you copy both the XML and JS file to your controller directory. Mixxx 2.1+ is needed.
